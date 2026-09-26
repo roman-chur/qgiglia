@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+bsb.fsb-zg.com/Article/details/451698.sHtML<br>
+bsb.fsb-zg.com/Article/details/817408.sHtML<br>
+bsb.fsb-zg.com/Article/details/327149.sHtML<br>
+bsb.fsb-zg.com/Article/details/594583.sHtML<br>
+bsb.fsb-zg.com/Article/details/608091.sHtML<br>
+bsb.fsb-zg.com/Article/details/458416.sHtML<br>
+bsb.fsb-zg.com/Article/details/169950.sHtML<br>
+bsb.fsb-zg.com/Article/details/936991.sHtML<br>
+bsb.fsb-zg.com/Article/details/988501.sHtML<br>
+bsb.fsb-zg.com/Article/details/214773.sHtML<br>
+bsb.fsb-zg.com/Article/details/184366.sHtML<br>
+bsb.fsb-zg.com/Article/details/579565.sHtML<br>
+bsb.fsb-zg.com/Article/details/080513.sHtML<br>
+bsb.fsb-zg.com/Article/details/320542.sHtML<br>
+bsb.fsb-zg.com/Article/details/658828.sHtML<br>
+bsb.fsb-zg.com/Article/details/753623.sHtML<br>
+bsb.fsb-zg.com/Article/details/091595.sHtML<br>
+bsb.fsb-zg.com/Article/details/767239.sHtML<br>
+bsb.fsb-zg.com/Article/details/054415.sHtML<br>
+bsb.fsb-zg.com/Article/details/636973.sHtML<br>
+bsb.fsb-zg.com/Article/details/643321.sHtML<br>
+bsb.fsb-zg.com/Article/details/454472.sHtML<br>
+bsb.fsb-zg.com/Article/details/528362.sHtML<br>
+bsb.fsb-zg.com/Article/details/192500.sHtML<br>
+bsb.fsb-zg.com/Article/details/539927.sHtML<br>
+bsb.fsb-zg.com/Article/details/656493.sHtML<br>
+bsb.fsb-zg.com/Article/details/984349.sHtML<br>
+bsb.fsb-zg.com/Article/details/614897.sHtML<br>
+bsb.fsb-zg.com/Article/details/566330.sHtML<br>
+bsb.fsb-zg.com/Article/details/350332.sHtML<br>
+bsb.fsb-zg.com/Article/details/594771.sHtML<br>
+bsb.fsb-zg.com/Article/details/680097.sHtML<br>
+bsb.fsb-zg.com/Article/details/431134.sHtML<br>
+bsb.fsb-zg.com/Article/details/027689.sHtML<br>
+bsb.fsb-zg.com/Article/details/341308.sHtML<br>
+bsb.fsb-zg.com/Article/details/625175.sHtML<br>
+bsb.fsb-zg.com/Article/details/533835.sHtML<br>
+bsb.fsb-zg.com/Article/details/670935.sHtML<br>
+bsb.fsb-zg.com/Article/details/881513.sHtML<br>
+bsb.fsb-zg.com/Article/details/684283.sHtML<br>
+bsb.fsb-zg.com/Article/details/240254.sHtML<br>
+bsb.fsb-zg.com/Article/details/759510.sHtML<br>
+bsb.fsb-zg.com/Article/details/773753.sHtML<br>
+bsb.fsb-zg.com/Article/details/709106.sHtML<br>
+bsb.fsb-zg.com/Article/details/899920.sHtML<br>
+bsb.fsb-zg.com/Article/details/574684.sHtML<br>
+bsb.fsb-zg.com/Article/details/721357.sHtML<br>
+bsb.fsb-zg.com/Article/details/803783.sHtML<br>
+bsb.fsb-zg.com/Article/details/888653.sHtML<br>
+bsb.fsb-zg.com/Article/details/506836.sHtML<br>
+bsb.fsb-zg.com/Article/details/084065.sHtML<br>
+bsb.fsb-zg.com/Article/details/092105.sHtML<br>
+bsb.fsb-zg.com/Article/details/590181.sHtML<br>
+bsb.fsb-zg.com/Article/details/200357.sHtML<br>
+bsb.fsb-zg.com/Article/details/497800.sHtML<br>
+bsb.fsb-zg.com/Article/details/594398.sHtML<br>
+bsb.fsb-zg.com/Article/details/460889.sHtML<br>
+bsb.fsb-zg.com/Article/details/939728.sHtML<br>
+bsb.fsb-zg.com/Article/details/859998.sHtML<br>
+bsb.fsb-zg.com/Article/details/093923.sHtML<br>
+bsb.fsb-zg.com/Article/details/240914.sHtML<br>
+bsb.fsb-zg.com/Article/details/004032.sHtML<br>
+bsb.fsb-zg.com/Article/details/797778.sHtML<br>
+bsb.fsb-zg.com/Article/details/628506.sHtML<br>
+bsb.fsb-zg.com/Article/details/753180.sHtML<br>
+bsb.fsb-zg.com/Article/details/312753.sHtML<br>
+bsb.fsb-zg.com/Article/details/711168.sHtML<br>
+bsb.fsb-zg.com/Article/details/057519.sHtML<br>
+bsb.fsb-zg.com/Article/details/492684.sHtML<br>
+bsb.fsb-zg.com/Article/details/750165.sHtML<br>
+bsb.fsb-zg.com/Article/details/623369.sHtML<br>
+bsb.fsb-zg.com/Article/details/764658.sHtML<br>
+bsb.fsb-zg.com/Article/details/097843.sHtML<br>
+bsb.fsb-zg.com/Article/details/603294.sHtML<br>
+bsb.fsb-zg.com/Article/details/154186.sHtML<br>
+bsb.fsb-zg.com/Article/details/532518.sHtML<br>
+bsb.fsb-zg.com/Article/details/512509.sHtML<br>
+bsb.fsb-zg.com/Article/details/838921.sHtML<br>
+bsb.fsb-zg.com/Article/details/248549.sHtML<br>
+bsb.fsb-zg.com/Article/details/205991.sHtML<br>
+bsb.fsb-zg.com/Article/details/933187.sHtML<br>
+bsb.fsb-zg.com/Article/details/171284.sHtML<br>
+bsb.fsb-zg.com/Article/details/673391.sHtML<br>
+bsb.fsb-zg.com/Article/details/173876.sHtML<br>
+bsb.fsb-zg.com/Article/details/262245.sHtML<br>
+bsb.fsb-zg.com/Article/details/055409.sHtML<br>
+bsb.fsb-zg.com/Article/details/673309.sHtML<br>
+bsb.fsb-zg.com/Article/details/671386.sHtML<br>
+bsb.fsb-zg.com/Article/details/867257.sHtML<br>
+bsb.fsb-zg.com/Article/details/177803.sHtML<br>
+bsb.fsb-zg.com/Article/details/111840.sHtML<br>
+bsb.fsb-zg.com/Article/details/231332.sHtML<br>
+bsb.fsb-zg.com/Article/details/121249.sHtML<br>
+bsb.fsb-zg.com/Article/details/617662.sHtML<br>
+bsb.fsb-zg.com/Article/details/602392.sHtML<br>
+bsb.fsb-zg.com/Article/details/769380.sHtML<br>
+bsb.fsb-zg.com/Article/details/609580.sHtML<br>
+bsb.fsb-zg.com/Article/details/293610.sHtML<br>
+bsb.fsb-zg.com/Article/details/789927.sHtML<br>
+bsb.fsb-zg.com/Article/details/596397.sHtML<br>
+bsb.fsb-zg.com/Article/details/911950.sHtML<br>
+bsb.fsb-zg.com/Article/details/832843.sHtML<br>
+bsb.fsb-zg.com/Article/details/196908.sHtML<br>
+bsb.fsb-zg.com/Article/details/416637.sHtML<br>
+bsb.fsb-zg.com/Article/details/697554.sHtML<br>
+bsb.fsb-zg.com/Article/details/849719.sHtML<br>
+bsb.fsb-zg.com/Article/details/588050.sHtML<br>
+bsb.fsb-zg.com/Article/details/502942.sHtML<br>
+bsb.fsb-zg.com/Article/details/845040.sHtML<br>
+bsb.fsb-zg.com/Article/details/316990.sHtML<br>
+bsb.fsb-zg.com/Article/details/563131.sHtML<br>
+bsb.fsb-zg.com/Article/details/232960.sHtML<br>
+bsb.fsb-zg.com/Article/details/855407.sHtML<br>
+bsb.fsb-zg.com/Article/details/238927.sHtML<br>
+bsb.fsb-zg.com/Article/details/441297.sHtML<br>
+bsb.fsb-zg.com/Article/details/011943.sHtML<br>
+bsb.fsb-zg.com/Article/details/889571.sHtML<br>
+bsb.fsb-zg.com/Article/details/911827.sHtML<br>
+bsb.fsb-zg.com/Article/details/801167.sHtML<br>
+bsb.fsb-zg.com/Article/details/220092.sHtML<br>
+bsb.fsb-zg.com/Article/details/985393.sHtML<br>
+bsb.fsb-zg.com/Article/details/735694.sHtML<br>
+bsb.fsb-zg.com/Article/details/246251.sHtML<br>
+bsb.fsb-zg.com/Article/details/388323.sHtML<br>
+bsb.fsb-zg.com/Article/details/826850.sHtML<br>
+bsb.fsb-zg.com/Article/details/060395.sHtML<br>
+bsb.fsb-zg.com/Article/details/899509.sHtML<br>
+bsb.fsb-zg.com/Article/details/595840.sHtML<br>
+bsb.fsb-zg.com/Article/details/552491.sHtML<br>
+bsb.fsb-zg.com/Article/details/310553.sHtML<br>
+bsb.fsb-zg.com/Article/details/398438.sHtML<br>
+bsb.fsb-zg.com/Article/details/173503.sHtML<br>
+bsb.fsb-zg.com/Article/details/112991.sHtML<br>
+bsb.fsb-zg.com/Article/details/763265.sHtML<br>
+bsb.fsb-zg.com/Article/details/310916.sHtML<br>
+bsb.fsb-zg.com/Article/details/798392.sHtML<br>
+bsb.fsb-zg.com/Article/details/107630.sHtML<br>
+bsb.fsb-zg.com/Article/details/658339.sHtML<br>
+bsb.fsb-zg.com/Article/details/350876.sHtML<br>
+bsb.fsb-zg.com/Article/details/237298.sHtML<br>
+bsb.fsb-zg.com/Article/details/209443.sHtML<br>
+bsb.fsb-zg.com/Article/details/154005.sHtML<br>
+bsb.fsb-zg.com/Article/details/849884.sHtML<br>
+bsb.fsb-zg.com/Article/details/342537.sHtML<br>
+bsb.fsb-zg.com/Article/details/703849.sHtML<br>
+bsb.fsb-zg.com/Article/details/379075.sHtML<br>
+bsb.fsb-zg.com/Article/details/497238.sHtML<br>
+bsb.fsb-zg.com/Article/details/877905.sHtML<br>
+bsb.fsb-zg.com/Article/details/702696.sHtML<br>
+bsb.fsb-zg.com/Article/details/740934.sHtML<br>
+bsb.fsb-zg.com/Article/details/475956.sHtML<br>
+bsb.fsb-zg.com/Article/details/459479.sHtML<br>
+bsb.fsb-zg.com/Article/details/721873.sHtML<br>
+bsb.fsb-zg.com/Article/details/785943.sHtML<br>
+bsb.fsb-zg.com/Article/details/753628.sHtML<br>
+bsb.fsb-zg.com/Article/details/439113.sHtML<br>
+bsb.fsb-zg.com/Article/details/310816.sHtML<br>
+bsb.fsb-zg.com/Article/details/265728.sHtML<br>
+bsb.fsb-zg.com/Article/details/462095.sHtML<br>
+bsb.fsb-zg.com/Article/details/300229.sHtML<br>
+bsb.fsb-zg.com/Article/details/432857.sHtML<br>
+bsb.fsb-zg.com/Article/details/566710.sHtML<br>
+bsb.fsb-zg.com/Article/details/815280.sHtML<br>
+bsb.fsb-zg.com/Article/details/231111.sHtML<br>
+bsb.fsb-zg.com/Article/details/567724.sHtML<br>
+bsb.fsb-zg.com/Article/details/526928.sHtML<br>
+bsb.fsb-zg.com/Article/details/546958.sHtML<br>
+bsb.fsb-zg.com/Article/details/370933.sHtML<br>
+bsb.fsb-zg.com/Article/details/836077.sHtML<br>
+bsb.fsb-zg.com/Article/details/577702.sHtML<br>
+bsb.fsb-zg.com/Article/details/486735.sHtML<br>
+bsb.fsb-zg.com/Article/details/560052.sHtML<br>
+bsb.fsb-zg.com/Article/details/611337.sHtML<br>
+bsb.fsb-zg.com/Article/details/570557.sHtML<br>
+bsb.fsb-zg.com/Article/details/671952.sHtML<br>
+bsb.fsb-zg.com/Article/details/701316.sHtML<br>
+bsb.fsb-zg.com/Article/details/971405.sHtML<br>
+bsb.fsb-zg.com/Article/details/754761.sHtML<br>
+bsb.fsb-zg.com/Article/details/900729.sHtML<br>
+bsb.fsb-zg.com/Article/details/212604.sHtML<br>
+bsb.fsb-zg.com/Article/details/780806.sHtML<br>
+bsb.fsb-zg.com/Article/details/785884.sHtML<br>
+bsb.fsb-zg.com/Article/details/029532.sHtML<br>
+bsb.fsb-zg.com/Article/details/110360.sHtML<br>
+bsb.fsb-zg.com/Article/details/857617.sHtML<br>
+bsb.fsb-zg.com/Article/details/558964.sHtML<br>
+bsb.fsb-zg.com/Article/details/249494.sHtML<br>
+bsb.fsb-zg.com/Article/details/940515.sHtML<br>
+bsb.fsb-zg.com/Article/details/108298.sHtML<br>
+bsb.fsb-zg.com/Article/details/240334.sHtML<br>
+bsb.fsb-zg.com/Article/details/265697.sHtML<br>
+bsb.fsb-zg.com/Article/details/425150.sHtML<br>
+bsb.fsb-zg.com/Article/details/423357.sHtML<br>
+bsb.fsb-zg.com/Article/details/614294.sHtML<br>
+bsb.fsb-zg.com/Article/details/869286.sHtML<br>
+bsb.fsb-zg.com/Article/details/769697.sHtML<br>
+bsb.fsb-zg.com/Article/details/983293.sHtML<br>
+bsb.fsb-zg.com/Article/details/187033.sHtML<br>
+bsb.fsb-zg.com/Article/details/610583.sHtML<br>
+bsb.fsb-zg.com/Article/details/572246.sHtML<br>
+bsb.fsb-zg.com/Article/details/769731.sHtML<br>
+bsb.fsb-zg.com/Article/details/484465.sHtML<br>
+bsb.fsb-zg.com/Article/details/454473.sHtML<br>
+bsb.fsb-zg.com/Article/details/284258.sHtML<br>
+bsb.fsb-zg.com/Article/details/040576.sHtML<br>
+bsb.fsb-zg.com/Article/details/351328.sHtML<br>
+bsb.fsb-zg.com/Article/details/094935.sHtML<br>
+bsb.fsb-zg.com/Article/details/028576.sHtML<br>
+bsb.fsb-zg.com/Article/details/255440.sHtML<br>
+bsb.fsb-zg.com/Article/details/462735.sHtML<br>
+bsb.fsb-zg.com/Article/details/345956.sHtML<br>
+bsb.fsb-zg.com/Article/details/755672.sHtML<br>
+bsb.fsb-zg.com/Article/details/270354.sHtML<br>
+bsb.fsb-zg.com/Article/details/030443.sHtML<br>
+bsb.fsb-zg.com/Article/details/587323.sHtML<br>
+bsb.fsb-zg.com/Article/details/214984.sHtML<br>
+bsb.fsb-zg.com/Article/details/468254.sHtML<br>
+bsb.fsb-zg.com/Article/details/820038.sHtML<br>
+bsb.fsb-zg.com/Article/details/943300.sHtML<br>
+bsb.fsb-zg.com/Article/details/752924.sHtML<br>
+bsb.fsb-zg.com/Article/details/435904.sHtML<br>
+bsb.fsb-zg.com/Article/details/602580.sHtML<br>
+bsb.fsb-zg.com/Article/details/822153.sHtML<br>
+bsb.fsb-zg.com/Article/details/282945.sHtML<br>
+bsb.fsb-zg.com/Article/details/633624.sHtML<br>
+bsb.fsb-zg.com/Article/details/238798.sHtML<br>
+bsb.fsb-zg.com/Article/details/973430.sHtML<br>
+bsb.fsb-zg.com/Article/details/195179.sHtML<br>
+bsb.fsb-zg.com/Article/details/317492.sHtML<br>
+bsb.fsb-zg.com/Article/details/632305.sHtML<br>
+bsb.fsb-zg.com/Article/details/560591.sHtML<br>
+bsb.fsb-zg.com/Article/details/082883.sHtML<br>
+bsb.fsb-zg.com/Article/details/533876.sHtML<br>
+bsb.fsb-zg.com/Article/details/610000.sHtML<br>
+bsb.fsb-zg.com/Article/details/795017.sHtML<br>
+bsb.fsb-zg.com/Article/details/498650.sHtML<br>
+bsb.fsb-zg.com/Article/details/211078.sHtML<br>
+bsb.fsb-zg.com/Article/details/710871.sHtML<br>
+bsb.fsb-zg.com/Article/details/506431.sHtML<br>
+bsb.fsb-zg.com/Article/details/647408.sHtML<br>
+bsb.fsb-zg.com/Article/details/309001.sHtML<br>
+bsb.fsb-zg.com/Article/details/862741.sHtML<br>
+bsb.fsb-zg.com/Article/details/593320.sHtML<br>
+bsb.fsb-zg.com/Article/details/717211.sHtML<br>
+bsb.fsb-zg.com/Article/details/044627.sHtML<br>
+bsb.fsb-zg.com/Article/details/836516.sHtML<br>
+bsb.fsb-zg.com/Article/details/769284.sHtML<br>
+bsb.fsb-zg.com/Article/details/791664.sHtML<br>
+bsb.fsb-zg.com/Article/details/422924.sHtML<br>
+bsb.fsb-zg.com/Article/details/761883.sHtML<br>
+bsb.fsb-zg.com/Article/details/169873.sHtML<br>
+bsb.fsb-zg.com/Article/details/808579.sHtML<br>
+bsb.fsb-zg.com/Article/details/458695.sHtML<br>
+bsb.fsb-zg.com/Article/details/949363.sHtML<br>
+bsb.fsb-zg.com/Article/details/088475.sHtML<br>
+bsb.fsb-zg.com/Article/details/384665.sHtML<br>
+bsb.fsb-zg.com/Article/details/446926.sHtML<br>
+bsb.fsb-zg.com/Article/details/441461.sHtML<br>
+bsb.fsb-zg.com/Article/details/083849.sHtML<br>
+bsb.fsb-zg.com/Article/details/193723.sHtML<br>
+bsb.fsb-zg.com/Article/details/458790.sHtML<br>
+bsb.fsb-zg.com/Article/details/948409.sHtML<br>
+bsb.fsb-zg.com/Article/details/866702.sHtML<br>
+bsb.fsb-zg.com/Article/details/007327.sHtML<br>
+bsb.fsb-zg.com/Article/details/391173.sHtML<br>
+bsb.fsb-zg.com/Article/details/374517.sHtML<br>
+bsb.fsb-zg.com/Article/details/450806.sHtML<br>
+bsb.fsb-zg.com/Article/details/425987.sHtML<br>
+bsb.fsb-zg.com/Article/details/312665.sHtML<br>
+bsb.fsb-zg.com/Article/details/196440.sHtML<br>
+bsb.fsb-zg.com/Article/details/492709.sHtML<br>
+bsb.fsb-zg.com/Article/details/614653.sHtML<br>
+bsb.fsb-zg.com/Article/details/610021.sHtML<br>
+bsb.fsb-zg.com/Article/details/370457.sHtML<br>
+bsb.fsb-zg.com/Article/details/978559.sHtML<br>
+bsb.fsb-zg.com/Article/details/388967.sHtML<br>
+bsb.fsb-zg.com/Article/details/166909.sHtML<br>
+bsb.fsb-zg.com/Article/details/045234.sHtML<br>
+bsb.fsb-zg.com/Article/details/903274.sHtML<br>
+bsb.fsb-zg.com/Article/details/146572.sHtML<br>
+bsb.fsb-zg.com/Article/details/758920.sHtML<br>
+bsb.fsb-zg.com/Article/details/821267.sHtML<br>
+bsb.fsb-zg.com/Article/details/190665.sHtML<br>
+bsb.fsb-zg.com/Article/details/801768.sHtML<br>
+bsb.fsb-zg.com/Article/details/094761.sHtML<br>
+bsb.fsb-zg.com/Article/details/263476.sHtML<br>
+bsb.fsb-zg.com/Article/details/538687.sHtML<br>
+bsb.fsb-zg.com/Article/details/610024.sHtML<br>
+bsb.fsb-zg.com/Article/details/500887.sHtML<br>
+bsb.fsb-zg.com/Article/details/271354.sHtML<br>
+bsb.fsb-zg.com/Article/details/593823.sHtML<br>
+bsb.fsb-zg.com/Article/details/741261.sHtML<br>
+bsb.fsb-zg.com/Article/details/246418.sHtML<br>
+bsb.fsb-zg.com/Article/details/944251.sHtML<br>
+bsb.fsb-zg.com/Article/details/876802.sHtML<br>
+bsb.fsb-zg.com/Article/details/651577.sHtML<br>
+bsb.fsb-zg.com/Article/details/357368.sHtML<br>
+bsb.fsb-zg.com/Article/details/498284.sHtML<br>
+bsb.fsb-zg.com/Article/details/210251.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2620:34:09
